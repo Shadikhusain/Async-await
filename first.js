@@ -67,14 +67,20 @@ function deliverOrder(droplocation) {
 // (ii)kyoki next task previous wale pe dependent hai
 // esko hum humesha ek (async functione ke ander hi (await) ko denge)
 
-// async function greet() {
-//     const order = await placeOrder(cart);
-//     const foodDetails = await preparingOrder(order)
-//     const droplocation = await pickupOrder(foodDetails)
-//     deliverOrder(droplocation);
 
-// }
-// greet();
+// ------------> esme error ko jo handle krenge vo krenge (try and catch block se)
+async function greet() {
+    try {
+        const order = await placeOrder(cart);
+        const foodDetails = await preparingOrder(order)
+        const droplocation = await pickupOrder(foodDetails)
+        deliverOrder(droplocation);
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+greet();
 
 // Promises ko humm direct consume nahi krr sakte---?
 // const p1 = new Promise((resolve, reject) => {
