@@ -77,34 +77,83 @@ function deliverOrder(droplocation) {
 // greet();
 
 // Promises ko humm direct consume nahi krr sakte---?
-const p1 = new Promise((resolve, reject) => {
-    let success = true;
-    setTimeout(() => {
-        if (success) {
-            resolve("Hello Everyone");
-        } else {
-            reject("Something Went Wrong");
-        }
-    }, 2000)
-});
-p1.then((message) => {
-    console.log("Success:", message);
-}).catch((error) => {
-    console.log("Error", error);
-})
+// const p1 = new Promise((resolve, reject) => {
+//     let success = true;
+//     setTimeout(() => {
+//         if (success) {
+//             resolve("Hello Everyone");
+//         } else {
+//             reject("Something Went Wrong");
+//         }
+//     }, 2000)
+// });
+// p1.then((message) => {
+//     console.log("Success:", message);
+// }).catch((error) => {
+//     console.log("Error", error);
+// })
+
 
 
 //(i) console.log(p1); // direct consume nahi krr sakte verna output:<Pending> aayega
 //(ii) p1.then((response) => console.log(response)); // (.then) se promise ko acche se consume kiya
 
-
+// const p1 = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve("First Promise Resolved");
+//     }, 8000)
+// })
+// const p2 = new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve("Second Promise Resolved");
+//         }, 5000)
+//     })
 // async function greet() {
 //     const data = await p1; // ye humne await se acche se consume kiya
 //     console.log(data);
+//     const data2 = await p2;
+//     console.log(data2);
 // }
 // greet();
+// agar yahi work humm (.then) se karaye to kaisa output aayega--->
+// p1.then(value => console.log(value));
+// p2.then(value => console.log(value));
 
+// --------------> Ek aur Level-Up kerte hai <---------------------
+// agar mei esko ek function ke ander rapup krr de to (p1,p2) ko
+function test1() {
+    const p1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("First Promise Resolved");
+        }, 5000)
+    })
+    return p1;
+}
 
+function test2() {
+    const p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Second Promise Resolved");
+        }, 5000)
+    })
+    return p2;
+}
+
+// async function greet() {
+//     const data1 = await test1();
+//     console.log(data1);
+//     const data2 = await test2();
+//     console.log(data2);
+
+// }
+// greet()
+async function meet() {
+    return "Hello Coder Army";
+    //  agar kuch bhi return nahi krenge (undefined) return krega
+    // kyoki asycn function humesha expect kerta hai ki promise return mile
+
+}
+meet().then(value => console.log(value));
 
 // ----> ye format jyada easy hai as compare to neeche wale ke 
 // problem bass ye hai--->(placeOrder wala fn ye mera (async type ka fn hai kyoki setTimeout chal raha hai) Immediately Next wale ko execute krr dega)
